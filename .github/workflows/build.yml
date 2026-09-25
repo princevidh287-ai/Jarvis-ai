@@ -18,16 +18,17 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y build-essential libffi-dev python3-dev git zip unzip openjdk-17-jdk
-        pip install --upgrade pip
-        pip install "cython==0.29.33"
-        pip install buildozer
+        python -m pip install --upgrade pip setuptools
+        python -m pip install "cython==0.29.33"
+        python -m pip install buildozer
 
-    - name: Auto Accept Android SDK Licenses & Build
+    - name: Build APK with Buildozer
       run: |
         mkdir -p ~/.android
         touch ~/.android/repositories.cfg
         export APP_ACCEPT_SDK_LICENSES=1
-        yes | buildozer -v android debug || buildozer -v android debug
+        export PATH=$PATH:~/.local/bin
+        yes | python -m buildozer -v android debug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
