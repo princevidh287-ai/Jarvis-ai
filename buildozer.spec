@@ -22,7 +22,7 @@ version = 0.1
 requirements = python3,kivy
 
 # (str) Custom source code for requirements
-p4a.branch = release-2023.05.24
+p4a.branch = v2024.01.21
 
 # (str) Supported orientation
 orientation = portrait
