@@ -1,9 +1,7 @@
 [app]
 
-# Application Title
+# Application Title & Package
 title = Jarvis AI
-
-# Package Name & Domain
 package.name = jarvisapp
 package.domain = org.prince
 
@@ -11,29 +9,30 @@ package.domain = org.prince
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
 
-# Application Version
+# Version
 version = 0.1
 
-# Requirements
+# Requirements (Clean & Minimal)
 requirements = python3,kivy
 
-# Supported Orientation & Fullscreen
+# Orientation
 orientation = portrait
 fullscreen = 0
 
-# Android API & NDK Configuration
+# Android Target Configurations
 android.api = 33
 android.minapi = 21
 android.ndk = 25b
 
-# Accept SDK Licenses Automatically
+# Stable P4A Release (Tested & Stable)
+p4a.branch = v2024.01.21
+
+# Accept Licenses
 android.accept_sdk_license = True
 
-# Target Architectures
-android.archs = arm64-v8a, armeabi-v7a
+# Sirf Single Architecture (Aapke phone ke liye fast aur error-free build)
+android.archs = arm64-v8a
 
 [buildozer]
-
-# Log Level
 log_level = 2
 warn_on_root = 1
