@@ -1,39 +1,37 @@
-name: Build APK via Container
+[app]
 
-on: [push, workflow_dispatch]
+# Application Title & Package
+title = Jarvis AI
+package.name = jarvisapp
+package.domain = org.prince
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    container:
-      image: ubuntu:22.04
+# Source Code
+source.dir = .
+source.include_exts = py,png,jpg,kv,atlas
 
-    steps:
-    - uses: actions/checkout@v4
+# Version
+version = 0.1
 
-    - name: Install System Dependencies inside Container
-      run: |
-        apt-get update
-        apt-get install -y python3.10 python3.10-dev python3-pip build-essential libffi-dev git zip unzip openjdk-17-jdk ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev autoconf libtool pkg-config
-        
-    - name: Setup Python Tools
-      run: |
-        python3.10 -m pip install --upgrade pip setuptools wheel
-        python3.10 -m pip install "cython<3.0.0"
-        python3.10 -m pip install buildozer
+# Requirements
+requirements = python3,kivy
 
-    - name: Build APK with Buildozer
-      env:
-        APP_ACCEPT_SDK_LICENSES: 1
-        BUILDOZER_WARN_ON_ROOT: 0
-      run: |
-        mkdir -p ~/.android
-        touch ~/.android/repositories.cfg
-        python3.10 -m buildozer -v android debug
+# Orientation
+orientation = portrait
+fullscreen = 0
 
-    - name: Upload APK
-      uses: actions/upload-artifact@v4
-      with:
-        name: Jarvis-APK
-        path: bin/*.apk
-        
+# Android Target Configurations (Fixed API Alignment)
+android.api = 33
+android.minapi = 24
+android.ndk = 25b
+
+# Accept SDK Licenses Automatically
+android.accept_sdk_license = True
+
+# Target Architecture
+android.archs = arm64-v8a
+
+[buildozer]
+
+# Log level 1 prevents log buffer overflow
+log_level = 1
+warn_on_root = 1
