@@ -12,27 +12,26 @@ source.include_exts = py,png,jpg,kv,atlas
 # Version
 version = 0.1
 
-# Requirements (Clean & Minimal)
+# Requirements
 requirements = python3,kivy
 
 # Orientation
 orientation = portrait
 fullscreen = 0
 
-# Android Target Configurations
+# Android Target Configurations (Fixed API Alignment)
 android.api = 33
-android.minapi = 21
+android.minapi = 24
 android.ndk = 25b
 
-# Stable P4A Release (Tested & Stable)
-p4a.branch = v2024.01.21
-
-# Accept Licenses
+# Accept SDK Licenses Automatically
 android.accept_sdk_license = True
 
-# Sirf Single Architecture (Aapke phone ke liye fast aur error-free build)
+# Target Architecture
 android.archs = arm64-v8a
 
 [buildozer]
-log_level = 2
+
+# Log level 1 prevents log buffer overflow
+log_level = 1
 warn_on_root = 1
